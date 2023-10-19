@@ -7,6 +7,7 @@
  Description :
  ============================================================================
  */
+extern "C"{
 /* MCU */
 #include "at32f435_437.h"
 /* Clock */
@@ -16,6 +17,9 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "queue.h"
+/* ARM Math */
+#include "arm_math.h"
+}
 
 /* Daemon Task */
 static void daemon_task(void *pvParameters);
@@ -52,6 +56,11 @@ int main(void)
 /* Daemon Task */
 static void daemon_task(void *pvParameters)
 {
+    /* check arm_math sin(0.5) = 0.4794 */
+    volatile float y = 0.0f;
+
+    y = arm_sin_f32(0.5f);
+
     /* Enable the gpio clock */
     crm_periph_clock_enable(CRM_GPIOD_PERIPH_CLOCK, TRUE);
 

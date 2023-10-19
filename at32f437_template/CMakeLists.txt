@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.25)
 
+# target (project) name
+set(TARGET_NAME at32f437_template)
+
 # set target system
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_VERSION 1)
@@ -39,7 +42,7 @@ set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
 ########################################################################################################
 
 # set project name
-project(at32f437_template C CXX ASM)
+project(${TARGET_NAME} C CXX ASM)
 
 # language version
 set(CMAKE_CXX_STANDARD 17)
@@ -82,7 +85,7 @@ else ()
 endif ()
 
 # add definitions
-add_definitions(-D${MCU_NAME} -DUSE_STDPERIPH_DRIVER)
+add_definitions(-D${MCU_NAME} -DUSE_STDPERIPH_DRIVER -DARM_MATH_CM4)
 
 # add all appliction sources to the build
 file(GLOB APP_SOURCES
@@ -108,11 +111,20 @@ file(GLOB FREERTOS_SOURCES
 include_directories(
 	"${CMAKE_SOURCE_DIR}/CMSIS/cm4/core_support"
 	"${CMAKE_SOURCE_DIR}/CMSIS/cm4/device_support"
-	"${CMAKE_CURRENT_SOURCE_DIR}/Application/Include"
-	"${CMAKE_CURRENT_SOURCE_DIR}/Libraries/StdPeriph/Include"
-	"${CMAKE_CURRENT_SOURCE_DIR}/Libraries/FreeRTOS"
-	"${CMAKE_CURRENT_SOURCE_DIR}/Libraries/FreeRTOS/Include"
-	"${CMAKE_CURRENT_SOURCE_DIR}/Libraries/FreeRTOS/Portable"
+	"${CMAKE_SOURCE_DIR}/Application/Include"
+	"${CMAKE_SOURCE_DIR}/Libraries/StdPeriph/Include"
+	"${CMAKE_SOURCE_DIR}/Libraries/FreeRTOS"
+	"${CMAKE_SOURCE_DIR}/Libraries/FreeRTOS/Include"
+	"${CMAKE_SOURCE_DIR}/Libraries/FreeRTOS/Portable"
+)
+
+# enable use static library
+option(USE_STATIC "Use static library" ON)
+
+# find the arm_cortexM4lf_math library and set the path in the ARM_CMSIS_DSP variable
+find_library(ARM_CMSIS_DSP
+             arm_cortexM4lf_math
+			 ${CMAKE_SOURCE_DIR}/Libraries/DSP
 )
 
 # print summary of build configurations
@@ -143,6 +155,9 @@ add_link_options(-mcpu=cortex-m4 -mthumb)
 
 # add executable to the project
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT})
+
+# link static libraries in the project
+target_link_libraries(${TARGET_NAME}.elf PRIVATE ${ARM_CMSIS_DSP})
 
 # set linker options
 target_link_options(${PROJECT_NAME}.elf PRIVATE -T ${LINKER_SCRIPT})
