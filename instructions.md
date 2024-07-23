@@ -16,4 +16,13 @@
  ```"searchDir": [ "/home/tcukavin13/OpenOCD/scripts" ]```<br>
  <br>
 В качестве генератора CMake в файле **CMakePresets.json** задаём ```Unix Makefiles```:<br> 
-```"generator": "Unix Makefiles"```
+```"generator": "Unix Makefiles"```<br>
+<br>
+В Linux разрешение на доступ к USB-устройствам из пользовательского пространства должно быть явно предоставлено через правила udev. Чтобы получить доступ к отладчику AtLink без необходимости запуска OpenOCD от имени root, что крайне не рекомендуется, необходимо добавить правила в каталог ```/etc/udev/rules.d/```:<br>
+```$ sudo cp atlink.rules /etc/udev/rules.d```<br>
+<br>
+**atlink.rules** содержит строку:<br>
+```SUBSYSTEMS=="usb", ATTRS{idVendor}=="2e3c", ATTRS{idProduct}=="f000",\```<br>```MODE:="0666"```<br>
+VID и PID USB-устройства можно посмотреть выполнив команду ```lsusb``` с подключенным USB программатором/отладчиком AtLink.<br>
+<br>![title](./resources/usb.png)<br>
+Из картинки выше видно, что для AtLink, VendorID = 0x2e3c, ProductID = 0xf000.
