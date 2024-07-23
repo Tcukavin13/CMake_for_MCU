@@ -52,6 +52,7 @@ int main(void)
   return 0;
 }
 
+uint32_t x = 0;
 
 /* Daemon Task */
 static void daemon_task(void *pvParameters)
@@ -78,5 +79,6 @@ static void daemon_task(void *pvParameters)
         gpio_bits_set(GPIOD, GPIO_PINS_13 | GPIO_PINS_14 | GPIO_PINS_15);
         vTaskDelay(500);
         gpio_bits_reset(GPIOD, GPIO_PINS_13 | GPIO_PINS_14 | GPIO_PINS_15);
+        x++;
     }
 }

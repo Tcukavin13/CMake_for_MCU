@@ -1,51 +1,6 @@
 # Autor: Tcukavin13
 
-####################### exclude all files and folders #######################
-
-# Exclude all other files
-*.*
-
-# Exclude all other folders in project with files
-/**/*.*
-
-############################# include need files ############################
-
-# Include git services files
-!.gitignore
-!.gitmodule
-!.git
-!Readme.md
-
-# Include CMake files
-!/**/CMakeLists.txt
-
-# Include build files
-#!*.hex
-#!*.bin
-
-# Include all project files
-# ASM
-!/**/*.S
-!/**/*.s
-# C
-!/**/*.c
-!/**/*.h
-# C++
-!/**/*.cpp
-!/**/*.hpp
-
-# Include static libraries
-!/**/*.a
-
-# Include linker files
-!/**/*.ld
-
-# Include other files
-!/**/*.svd
-!/**/Readme/*.*
-
-# Include matlab and simulink files
-#!/**/*.slx
-#!/*.mat
+!/Debug
+!/Release
 
 # end of gitignore file 

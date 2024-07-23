@@ -1,0 +1,29 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "Debug",
+            "displayName": "Debug",
+            "description": "Unix Makefiles generator",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/Debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug",
+                "CMAKE_TOOLCHAIN_FILE": "",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}"
+            }
+        },
+        {
+            "name": "Release",
+            "displayName": "Release",
+            "description": "Unix Makefiles generator",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/Release",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_TOOLCHAIN_FILE": "",
+                "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}"
+            }
+        }
+    ]
+}

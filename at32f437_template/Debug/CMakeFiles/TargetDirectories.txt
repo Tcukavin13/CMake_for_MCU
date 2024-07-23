@@ -1,0 +1,3 @@
+/home/tcukavin13/Desktop/CMake_for_MCU/at32f437_template/Debug/CMakeFiles/at32f437_template.elf.dir
+/home/tcukavin13/Desktop/CMake_for_MCU/at32f437_template/Debug/CMakeFiles/edit_cache.dir
+/home/tcukavin13/Desktop/CMake_for_MCU/at32f437_template/Debug/CMakeFiles/rebuild_cache.dir
