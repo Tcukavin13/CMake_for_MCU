@@ -4,8 +4,8 @@
         {
             "name": "Debug",
             "displayName": "Debug",
-            "description": "Unix Makefiles generator",
-            "generator": "Unix Makefiles",
+            "description": "MinGW Makefiles generator",
+            "generator": "MinGW Makefiles",
             "binaryDir": "${sourceDir}/Debug",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Debug",
@@ -16,8 +16,8 @@
         {
             "name": "Release",
             "displayName": "Release",
-            "description": "Unix Makefiles generator",
-            "generator": "Unix Makefiles",
+            "description": "MinGW Makefiles generator",
+            "generator": "MinGW Makefiles",
             "binaryDir": "${sourceDir}/Release",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",

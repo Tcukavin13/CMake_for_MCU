@@ -14,9 +14,7 @@
             "svdFile": "./SVD/AT32F437xx_v2.svd",
             "liveWatch": {"enabled": true, "samplesPerSecond": 10},
             "runToEntryPoint": "main",
-            "searchDir": [
-                "/home/tcukavin13/OpenOCD/scripts"
-            ],
+            "searchDir": [],
             "configFiles": [
                 "./OpenOCD/atlink.cfg",
                 "./OpenOCD/at32f437xM.cfg"
